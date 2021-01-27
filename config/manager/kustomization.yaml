@@ -1,2 +1,8 @@
 resources:
 - manager.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: controller
+  newName: registry.cn-hangzhou.aliyuncs.com/wise2c-dev/falcon
+  newTag: 0.0.0

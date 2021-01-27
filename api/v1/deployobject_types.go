@@ -17,6 +17,8 @@ limitations under the License.
 package v1
 
 import (
+	appsv1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -28,14 +30,36 @@ type DeployObjectSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of DeployObject. Edit DeployObject_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// +kubebuilder:validation:Minimum=0
+
+	// Replicas is pod replica num
+	Replicas *int32 `json:"replicas"`
+
+	// +kubebuilder:validation:MinLength=0
+
+	// Image is container image address
+	Image string `json:"image"`
+
+	// Resources describes the compute resource requirements
+	// +optional
+	Resources corev1.ResourceRequirements `json:"resources,omitempty"`
+
+	// EnvVar represents an environment variable present in a Container.
+	// +optional
+	Env []corev1.EnvVar `json:"env,omitempty"`
+
+	// ServicePort contains information on service's port.
+	// +optional
+	Ports []corev1.ServicePort `json:"ports,omitempty"`
 }
 
 // DeployObjectStatus defines the observed state of DeployObject
 type DeployObjectStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	// DeploymentStatus is the most recently observed status of the Deployment.
+	appsv1.DeploymentStatus `json:",inline"`
 }
 
 // +kubebuilder:object:root=true
