@@ -1,0 +1,20 @@
+# permissions for end users to view deployobjects.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: deployobject-viewer-role
+rules:
+- apiGroups:
+  - app.kubebuilder.io
+  resources:
+  - deployobjects
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - app.kubebuilder.io
+  resources:
+  - deployobjects/status
+  verbs:
+  - get

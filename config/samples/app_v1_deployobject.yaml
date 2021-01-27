@@ -1,0 +1,7 @@
+apiVersion: app.kubebuilder.io/v1
+kind: DeployObject
+metadata:
+  name: deployobject-sample
+spec:
+  # Add fields here
+  foo: bar
