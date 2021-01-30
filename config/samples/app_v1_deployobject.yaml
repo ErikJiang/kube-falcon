@@ -1,8 +1,12 @@
 apiVersion: app.kubebuilder.io/v1
 kind: DeployObject
 metadata:
-  name: deployobject-sample
+  name: falcon
 spec:
-  # Add fields here
   image: nginx:1.19.6-alpine
   replicas: 2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30010

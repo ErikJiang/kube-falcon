@@ -49,8 +49,7 @@ type DeployObjectSpec struct {
 	Env []corev1.EnvVar `json:"env,omitempty"`
 
 	// ServicePort contains information on service's port.
-	// +optional
-	Ports []corev1.ServicePort `json:"ports,omitempty"`
+	Ports []corev1.ServicePort `json:"ports"`
 }
 
 // DeployObjectStatus defines the observed state of DeployObject

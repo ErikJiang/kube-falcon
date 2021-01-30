@@ -221,6 +221,7 @@ spec:
               type: object
           required:
           - image
+          - ports
           - replicas
           type: object
         status:
